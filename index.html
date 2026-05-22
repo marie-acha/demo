@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>To-Do List</h1>
+      <div class="stats" aria-live="polite">
+        <span>Active: <strong id="active-count">0</strong></span>
+        <span class="stats-divider">|</span>
+        <span>Completed: <strong id="completed-count">0</strong></span>
+      </div>
+    </header>
+
+    <main>
+      <form id="task-form" autocomplete="off">
+        <input
+          type="text"
+          id="task-input"
+          placeholder="What needs to be done?"
+          aria-label="Task description"
+          required
+        >
+        <select id="priority-select" aria-label="Priority">
+          <option value="high">High</option>
+          <option value="medium" selected>Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <button type="submit">Add</button>
+      </form>
+
+      <ul id="task-list" aria-label="Tasks"></ul>
+    </main>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
