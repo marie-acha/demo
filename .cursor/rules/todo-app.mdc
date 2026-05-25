@@ -1,0 +1,47 @@
+---
+description: Conventions for the vanilla HTML/CSS/JS to-do list app
+globs: "{index.html,styles.css,app.js}"
+alwaysApply: false
+---
+
+# To-Do List App
+
+## Stack
+
+- Plain **HTML**, **CSS**, and **JavaScript** only — no frameworks, bundlers, or backend
+- Three files at repo root: `index.html`, `styles.css`, `app.js`
+- Open `index.html` directly in a browser; no build step required
+
+## Architecture
+
+- **State**: in-memory `tasks` array in `app.js`
+- **Task shape**: `{ id, text, priority, dueDate, completed }`
+  - `dueDate`: ISO date string (`YYYY-MM-DD`) or `null` if unset
+  - `id`: `crypto.randomUUID()`
+  - `priority`: `"high" | "medium" | "low"` (lowercase, matches `<select>` values and CSS classes)
+- **UI updates**: single `render()` rebuilds the list and refreshes counters after every change
+
+## Features to preserve
+
+- Add tasks via form (trim empty input; default priority: medium; optional due date on create)
+- Each task row has an editable `type="date"` input to change `dueDate` after creation
+- Priority badges: High (red), Medium (amber), Low (green)
+- Checkbox toggles completion; completed rows use `.completed` (strikethrough, muted)
+- Live counters: **active** (`!completed`) and **completed** (`completed`)
+
+## DOM and security
+
+- Cache element refs at top of `app.js` (`#task-form`, `#task-input`, `#task-list`, etc.)
+- Build list items with `document.createElement` and set user text via **`textContent`**, never `innerHTML`
+- Keep `aria-label` / `aria-live` on interactive and stats regions
+
+## CSS conventions
+
+- Card layout centered with `max-width: 480px`
+- Priority styles via `.priority-badge.high|medium|low`
+- System font stack; visible `:focus` outlines on inputs and buttons
+
+## Scope discipline
+
+- Keep changes minimal and scoped to the requested feature
+- Avoid adding frameworks, npm, or localStorage unless explicitly requested

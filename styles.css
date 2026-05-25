@@ -88,6 +88,31 @@ main {
   outline-offset: 1px;
 }
 
+/* #userStory1: dueDateInput is an input field for the due date */
+#due-date-input,
+.task-due-date {
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  background: #fff;
+  color: #1a1a2e;
+}
+
+#due-date-input:focus,
+.task-due-date:focus {
+  outline: 2px solid #4a6cf7;
+  outline-offset: 1px;
+  border-color: #4a6cf7;
+}
+
+.task-due-date {
+  flex-shrink: 0;
+  width: 8.5rem;
+}
+/* #userStory1: dueDateInput is a date input field */
+
 #task-form button {
   padding: 0.625rem 1rem;
   background: #4a6cf7;
@@ -197,6 +222,7 @@ main {
   }
 
   #priority-select,
+  #due-date-input, /* #userStory1: dueDateInput is a date input field */
   #task-form button {
     flex: 1;
   }
